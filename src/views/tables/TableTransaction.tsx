@@ -10,6 +10,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TablePagination from '@mui/material/TablePagination'
+import TableSortLabel from '@mui/material/TableSortLabel'
 import { Link } from 'mdi-material-ui'
 
 interface Column {

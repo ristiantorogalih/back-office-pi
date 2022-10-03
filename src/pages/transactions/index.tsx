@@ -1,32 +1,32 @@
-import { Typography, CardHeader } from '@mui/material'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Grid'
-import React from 'react'
+import * as React from 'react'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
+import { useDemoData } from '@mui/x-data-grid-generator'
+import { Typography } from '@mui/material'
 import Breadcrumbs from 'nextjs-breadcrumbs'
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
-import TotalEarning from 'src/views/dashboard/TotalEarning'
-import TableTransaction from 'src/views/tables/TableTransaction'
+
+const VISIBLE_FIELDS = ['id', 'Avatar', 'name', 'rating', 'country', 'dateCreated', 'isAdmin']
 
 const Breadcrumb = () => {
   return <Breadcrumbs useDefaultStyle replaceCharacterList={[{ from: '-', to: ' ' }]} rootLabel='Home' />
 }
 
-const Transactions = () => {
+export default function BasicExampleDataGrid() {
+  const { data } = useDemoData({
+    dataSet: 'Employee',
+    visibleFields: VISIBLE_FIELDS,
+    rowLength: 100
+  })
+
   return (
     <ApexChartWrapper sx={{ mt: -10 }}>
       <Typography variant='caption' sx={{ ml: 2 }}>
         <Breadcrumb />
       </Typography>
 
-      <Grid container spacing={6} sx={{ pt: 0.5 }}>
-        <Grid item xs={12} md={12}>
-          <Card>
-            <TableTransaction />
-          </Card>
-        </Grid>
-      </Grid>
+      <div style={{ height: 520, width: '100%' }}>
+        <DataGrid {...data} components={{ Toolbar: GridToolbar }} />
+      </div>
     </ApexChartWrapper>
   )
 }
-
-export default Transactions
